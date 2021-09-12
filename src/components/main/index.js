@@ -1,62 +1,22 @@
-import { useState } from 'react';
+import { Grid } from "@material-ui/core";
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
-import { styled } from '@material-ui/core/styles';
-import DashboardNavbar from './navbar';
-import DashboardSidebar from './sidebar';
 
-const DashboardLayoutRoot = styled('div')(
-    ({ theme }) => ({
-        backgroundColor: theme.palette.background.default,
-        display: 'flex',
-        height: '100%',
-        overflow: 'hidden',
-        width: '100%'
-    })
-);
-
-const DashboardLayoutWrapper = styled('div')(
-    ({ theme }) => ({
-        display: 'flex',
-        flex: '1 1 auto',
-        overflow: 'hidden',
-        paddingTop: 64,
-        [theme.breakpoints.up('lg')]: {
-            paddingLeft: 256
-        }
-    })
-);
-
-const DashboardLayoutContainer = styled('div')({
-    display: 'flex',
-    flex: '1 1 auto',
-    overflow: 'hidden'
-});
-
-const DashboardLayoutContent = styled('div')({
-    flex: '1 1 auto',
-    height: '100%',
-    overflow: 'auto'
-});
-
-const DashboardLayout = () => {
-    const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-
+const Main = () => {
     return (
-        <DashboardLayoutRoot>
-            <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
-            <DashboardSidebar
-                onMobileClose={() => setMobileNavOpen(false)}
-                openMobile={isMobileNavOpen}
-            />
-            <DashboardLayoutWrapper>
-                <DashboardLayoutContainer>
-                    <DashboardLayoutContent>
-                        <Outlet />
-                    </DashboardLayoutContent>
-                </DashboardLayoutContainer>
-            </DashboardLayoutWrapper>
-        </DashboardLayoutRoot>
+        <div>
+            <Navbar />
+            <Grid container>
+                <Grid item sm={2} xs={2}>
+                    <Sidebar />
+                </Grid>
+                <Grid item sm={10} xs={10}>
+                    <Outlet />
+                </Grid>
+            </Grid>
+        </div>
     );
 };
 
-export default DashboardLayout;
+export default Main;

@@ -1,59 +1,56 @@
 import {
-  NavLink as RouterLink,
-  matchPath,
-  useLocation
+  NavLink as RouterLink
 } from 'react-router-dom';
-import { Button, ListItem } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  item: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: theme.spacing(4),
+    [theme.breakpoints.up("sm")]: {
+      marginBottom: theme.spacing(3),
+      cursor: "pointer",
+    },
+  },
+  icon: {
+    marginRight: theme.spacing(1),
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "18px",
+    },
+  },
+  text: {
+    fontWeight: 500,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+}));
 
 const NavItem = ({
   href,
   icon: Icon,
-  title,
-  ...rest
+  title
 }) => {
-  const location = useLocation();
-
-  const active = href ? !!matchPath({
-    path: href,
-    end: false
-  }, location.pathname) : false;
+  const classes = useStyles();
 
   return (
-    <ListItem
-      disableGutters
-      sx={{
-        display: 'flex',
-        py: 0
-      }}
-      {...rest}
-    >
+    <div className={classes.item}>
       <Button
         component={RouterLink}
-        sx={{
-          color: 'text.secondary',
-          fontWeight: 'medium',
-          justifyContent: 'flex-start',
-          letterSpacing: 0,
-          py: 1.25,
-          textTransform: 'none',
-          width: '100%',
-          ...(active && {
-            color: 'primary.main'
-          }),
-          '& svg': {
-            mr: 1
-          }
-        }}
         to={href}
       >
-        {Icon && (
-          <Icon size="20" />
-        )}
-        <span>
-          {title}
-        </span>
+        <Icon className={classes.icon} />
       </Button>
-    </ListItem>
+      <Button
+        component={RouterLink}
+        className={classes.text}
+        to={href}
+      >
+        {title}
+      </Button>
+    </div>
   );
 }
 

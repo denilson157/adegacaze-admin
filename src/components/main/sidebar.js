@@ -1,82 +1,43 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import {
-    Box,
-    Drawer,
-    Hidden,
-    List
+    Container,
 } from '@material-ui/core';
-import NavItem from './navbarItem';
-import { items } from './menuItems'
+import { makeStyles } from '@material-ui/core/styles';
+import { items } from './MenuItems'
+import NavItem from './NavbarItem';
 
+const useStyles = makeStyles((theme) => ({
+    container: {
+        height: "100vh",
+        color: "white",
+        paddingTop: theme.spacing(10),
+        backgroundColor: theme.palette.primary.main,
+        position: "sticky",
+        top: 0,
+        [theme.breakpoints.up("sm")]: {
+            backgroundColor: "white",
+            color: "#555",
+            border: "1px solid #ece7e7",
+        },
+    },
+}));
 
-const DashboardSidebar = ({ onMobileClose, openMobile }) => {
-    const location = useLocation();
-
-    useEffect(() => {
-        if (openMobile && onMobileClose) {
-            onMobileClose();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location.pathname]);
-
-    const content = (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%'
-            }}
-        >
-            <Box sx={{ p: 2 }}>
-                <List>
-                    {items.map((item) => (
-                        <NavItem
-                            href={item.href}
-                            key={item.title}
-                            title={item.title}
-                            icon={item.icon}
-                        />
-                    ))}
-                </List>
-            </Box>
-        </Box>
-    );
+const DashboardSidebar = () => {
+    const classes = useStyles();
 
     return (
-        <>
-            <Hidden mdUp>
-                <Drawer
-                    anchor="left"
-                    onClose={onMobileClose}
-                    open={openMobile}
-                    variant="temporary"
-                    PaperProps={{
-                        sx: {
-                            width: 256
-                        }
-                    }}
-                >
-                    {content}
-                </Drawer>
-            </Hidden>
-            <Hidden mdDown>
-                <Drawer
-                    anchor="left"
-                    open
-                    variant="persistent"
-                    PaperProps={{
-                        sx: {
-                            width: 256,
-                            top: 64,
-                            height: 'calc(100% - 64px)'
-                        }
-                    }}
-                >
-                    {content}
-                </Drawer>
-            </Hidden>
-        </>
+        <Container className={classes.container}>
+            {
+                (items || []).map((item, i) => (
+                    <NavItem
+                        href={item.href}
+                        key={item.title}
+                        title={item.title}
+                        icon={item.icon}
+                    />
+                ))
+            }
+        </Container>
     );
 };
+
 export default DashboardSidebar;
