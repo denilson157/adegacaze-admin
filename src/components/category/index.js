@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet';
-import { Container, makeStyles, useForkRef } from '@material-ui/core';
+import { Container, makeStyles, Grid } from '@material-ui/core';
 import Toolbar from './Toolbar'
 import List from './List'
 
@@ -15,34 +15,56 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const initialPageProps = {
+    loading: false
+}
+
 
 const CategoryList = () => {
     const [categoriesList, setCategories] = useState([])
-    const [loading, setloading] = useState(false);
+    const [pageProps, setPageProps] = useState(initialPageProps);
 
-    useEffect(() => {
-        searchCategories()
-    }, [])
+    const setLoading = (bool) => setPageProps({ ...pageProps, loading: bool })
+
 
     const searchCategories = () => {
-        setloading(true)
+        setLoading(true)
 
         APICategory
             .category_list()
-            .then(resp => setCategories(resp))
-            .finally(() => setloading(false))
+            .then(resp => updateCategories(createInitialList(resp)))
+            .finally(() => setLoading(false))
     }
+
+    useEffect(() => {
+        searchCategories()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const createInitialList = (list) => {
+        list.forEach(x => {
+            x.Checked = false
+        })
+        return list
+    }
+
+    const updateCategories = (newList) => setCategories(newList.slice())
+
+    const updateCategoriesList = (newList) => updateCategories(newList)
+
 
     const classes = useStyles();
 
     return (
-        <Container className={classes.container}>
-            <Helmet>
-                <title>Categorias</title>
-            </Helmet>
-            <Toolbar />
-            <List categories={categoriesList} />
-        </Container>
+        <Grid item sm={12}>
+            <Container className={classes.container}>
+                <Helmet>
+                    <title>Categorias</title>
+                </Helmet>
+                <Toolbar categories={categoriesList} />
+                <List updateCategoriesList={updateCategoriesList} categories={categoriesList} />
+            </Container>
+        </Grid>
     );
 }
 

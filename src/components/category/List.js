@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-// import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
-    Avatar,
     Box,
-    Card,
     Checkbox,
     Table,
     TableBody,
@@ -27,30 +24,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CategoryListResults = ({ categories, ...rest }) => {
-    const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
+const CategoryListResults = ({ categories, updateCategoriesList }) => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(0);
 
     const handleSelectAll = (event) => {
-        let newSelectedCategoryIds;
+        console.log(event.target.checked)
+        categories.forEach((category) =>
+            category.Checked = event.target.checked
+        )
+        const list = categories
+        console.log(list)
 
-        if (event.target.checked) {
-            newSelectedCategoryIds = categories.map((category) => category.id);
-        } else {
-            newSelectedCategoryIds = [];
-        }
+        updateCategoriesList(
+            list
+        )
+    }
 
-        setSelectedCategoryIds(newSelectedCategoryIds);
-    };
+    const handleSelectOne = id => {
+        const categoriesUpdate = [...categories]
 
-    const handleSelectOne = (event, id) => {
-        const selectedIndex = selectedCategoryIds.indexOf(id);
-        let newSelectedCategoryIds = [];
+        const selectedIndex = categoriesUpdate.map(x => x.id).indexOf(id);
 
+        if (selectedIndex >= 0)
+            categoriesUpdate[selectedIndex].Checked = !categoriesUpdate[selectedIndex].Checked
 
-
-        setSelectedCategoryIds(newSelectedCategoryIds);
+        updateCategoriesList(categoriesUpdate);
     };
 
     const handleLimitChange = (event) => {
@@ -65,51 +64,53 @@ const CategoryListResults = ({ categories, ...rest }) => {
 
     return (
         <Container className={classes.container}>
-            {/* <PerfectScrollbar> */}
-            <Box sx={{ minWidth: 1050 }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell padding="checkbox">
-                                <Checkbox
-                                    checked={selectedCategoryIds.length === categories.length}
-                                    color="primary"
-                                    indeterminate={
-                                        selectedCategoryIds.length > 0
-                                        && selectedCategoryIds.length < categories.length
-                                    }
-                                    onChange={handleSelectAll}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                Name
-                            </TableCell>
-
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {categories.slice(0, limit).map((category) => (
-                            <TableRow
-                                hover
-                                key={category.id}
-                                selected={selectedCategoryIds.indexOf(category.id) !== -1}
-                            >
+            <PerfectScrollbar>
+                <Box>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
                                 <TableCell padding="checkbox">
                                     <Checkbox
-                                        checked={selectedCategoryIds.indexOf(category.id) !== -1}
-                                        onChange={(event) => handleSelectOne(event, category.id)}
-                                        value="true"
+                                        checked={categories.length === 0 ? false : categories.every(x => x.Checked)}
+                                        color="primary"
+                                        indeterminate={
+                                            !categories.every(x => x.Checked) &&
+                                            categories.some(x => x.Checked)
+                                        }
+                                        onChange={handleSelectAll}
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    {category.name}
+                                    Name
                                 </TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Box>
-            {/* </PerfectScrollbar> */}
+                        </TableHead>
+                        <TableBody>
+                            {categories.map((category) => (
+                                <TableRow
+                                    hover
+                                    key={category.id}
+                                    selected={category.Checked}
+                                    color="primary"
+                                >
+                                    <TableCell padding="checkbox"
+                                        color="primary">
+                                        <Checkbox
+                                            checked={category.Checked}
+                                            onChange={() => handleSelectOne(category.id)}
+                                            value="true"
+                                            color="primary"
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                        {category.name}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Box>
+            </PerfectScrollbar>
             {/* <TablePagination
                 component="div"
                 count={categories.length}

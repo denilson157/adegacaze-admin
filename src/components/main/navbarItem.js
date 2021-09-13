@@ -36,21 +36,17 @@ const NavItem = ({
   const classes = useStyles();
 
   return (
-    <div className={classes.item}>
-      <Button
-        component={RouterLink}
-        to={href}
-      >
-        <Icon className={classes.icon} />
-      </Button>
-      <Button
-        component={RouterLink}
-        className={classes.text}
-        to={href}
-      >
+    <Button
+      component={RouterLink}
+      className={classes.item}
+      to={href}
+    >
+      <Icon className={classes.icon} />
+      <div
+        className={classes.text}>
         {title}
-      </Button>
-    </div>
+      </div>
+    </Button >
   );
 }
 

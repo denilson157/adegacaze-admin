@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CategoryToolbar = (props) => {
+const CategoryToolbar = ({ categories }) => {
     const classes = useStyles();
     return (
         <Container className={classes.container}>
@@ -29,11 +29,21 @@ const CategoryToolbar = (props) => {
                     justifyContent: 'flex-end'
                 }}
             >
+                <Box mx={2}>
+                    <Button
+                        color="secondary"
+                        variant="contained"
+                        disabled={categories.length > 0 ? categories.every(x => !x.Checked) : true}
+                    >
+                        Excluir selecionados
+                    </Button>
+
+                </Box>
                 <Button
                     color="primary"
                     variant="contained"
                 >
-                    Adicionar Categoria
+                    Adicionar categoria
                 </Button>
             </Box>
             <Box sx={{ mt: 3 }}>
@@ -41,7 +51,6 @@ const CategoryToolbar = (props) => {
                     <CardContent>
                         <TextField
                             fullWidth
-                            size="sm"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment
