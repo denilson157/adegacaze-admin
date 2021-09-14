@@ -1,5 +1,5 @@
 import api from './api'
-import { APIEnum } from './api/APIEnums'
+import { APIEnum } from '../util/APIEnums'
 
 export const category_list = () =>
     new Promise((resolve, reject) =>
@@ -19,13 +19,13 @@ export const category_get = categoryId =>
 
 
 export const category_save = category => {
-    let apiSave = api().post
+    let apiSave = api().post(APIEnum.Category, JSON.stringify(category))
 
     if (category.id)
-        apiSave = api().put
+        apiSave = api().put(`${APIEnum.Category}/${category?.id}`, JSON.stringify(category))
 
-    new Promise((resolve, reject) =>
-        apiSave(`${APIEnum.Category}`, category.id)
+    return new Promise((resolve, reject) =>
+        apiSave
             .then(resp => resolve(resp.data))
             .catch(error => reject(error))
     )

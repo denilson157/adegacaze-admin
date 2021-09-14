@@ -10,6 +10,9 @@ import {
     makeStyles
 } from '@material-ui/core';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import {
+    NavLink as RouterLink
+} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -42,6 +45,8 @@ const CategoryToolbar = ({ categories }) => {
                 <Button
                     color="primary"
                     variant="contained"
+                    to="/app/category/store"
+                    component={RouterLink}
                 >
                     Adicionar categoria
                 </Button>

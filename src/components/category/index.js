@@ -4,7 +4,7 @@ import { Container, makeStyles, Grid } from '@material-ui/core';
 import Toolbar from './Toolbar'
 import List from './List'
 
-import * as APICategory from '../../services/categoryService'
+import * as CategoryService from '../../services/categoryService'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -30,7 +30,7 @@ const CategoryList = () => {
     const searchCategories = () => {
         setLoading(true)
 
-        APICategory
+        CategoryService
             .category_list()
             .then(resp => updateCategories(createInitialList(resp)))
             .finally(() => setLoading(false))

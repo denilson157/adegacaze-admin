@@ -29,12 +29,10 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
     const [page, setPage] = useState(0);
 
     const handleSelectAll = (event) => {
-        console.log(event.target.checked)
         categories.forEach((category) =>
             category.Checked = event.target.checked
         )
         const list = categories
-        console.log(list)
 
         updateCategoriesList(
             list
