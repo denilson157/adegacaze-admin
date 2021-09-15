@@ -48,3 +48,11 @@ export const category_restore = categoryId =>
             .catch(error => reject(error))
     )
 
+export const category_list_trash = () =>
+    new Promise((resolve, reject) =>
+        api()
+            .post(`${APIEnum.Category}/trash`)
+            .then(resp => resolve(resp.data))
+            .catch(error => reject(error))
+    )
+

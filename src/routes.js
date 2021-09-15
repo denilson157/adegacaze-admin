@@ -1,4 +1,4 @@
-import { Main, Category, CategoryForm } from './components'
+import { Main, Category, CategoryForm, CategoryRestore } from './components'
 
 const routes = [
     { path: '', element: <Main /> },
@@ -19,6 +19,11 @@ const routes = [
             {
                 path: 'category/store/:id',
                 element: <CategoryForm />,
+
+            },
+            {
+                path: 'category/restore',
+                element: <CategoryRestore />,
 
             },
             { path: '*', element: <Main to="/app" /> }

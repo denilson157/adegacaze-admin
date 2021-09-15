@@ -1,11 +1,11 @@
 import {
     Box,
     Button,
-    Card,
-    CardContent,
-    TextField,
-    InputAdornment,
-    SvgIcon,
+    // Card,
+    // CardContent,
+    // TextField,
+    // InputAdornment,
+    // SvgIcon,
     Container,
     makeStyles
 } from '@material-ui/core';
@@ -46,30 +46,27 @@ const CategoryToolbar = ({ categories, deleteSelected }) => {
                 <AddRoundedIcon className={classes.icon} />categoria
             </Button>
 
-            <Box>
-                <Button
-                    color="default"
-                    variant="contained"
-                    to="/app/category/restore"
-                    component={RouterLink}
-                    className={classes.button}
-                >
-                    <RestoreFromTrashRoundedIcon className={classes.icon} /> restaurar
-                </Button>
+            <Button
+                color="default"
+                variant="contained"
+                to="/app/category/restore"
+                component={RouterLink}
+                className={classes.button}
+            >
+                <RestoreFromTrashRoundedIcon className={classes.icon} /> restaurar
+            </Button>
 
-            </Box>
-            <Box className={classes.button}>
-                <Button
-                    color="secondary"
-                    variant="contained"
-                    disabled={categories.length > 0 ? categories.every(x => !x.Checked) : true}
-                    onClick={deleteSelected}
-                    className={classes.button}
-                >
-                    <DeleteRoundedIcon className={classes.icon} /> Excluir
-                </Button>
 
-            </Box>
+            <Button
+                color="secondary"
+                variant="contained"
+                disabled={categories.length > 0 ? categories.every(x => !x.Checked) : true}
+                onClick={deleteSelected}
+                className={classes.button}
+            >
+                <DeleteRoundedIcon className={classes.icon} /> Excluir
+            </Button>
+
 
             {/* <Box sx={{ mt: 3 }}>
                 <Card>
