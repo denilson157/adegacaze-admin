@@ -87,9 +87,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                 <TableCell>
                                     Name
                                 </TableCell>
-                                <TableCell>
-                                    Action
-                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -111,16 +108,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                     </TableCell>
                                     <TableCell>
                                         {category.name}
-                                    </TableCell>
-                                    <TableCell>
-                                        <IconButton
-                                            color="primary"
-                                            variant="contained"
-                                            to={`/app/category/store/${category.id}`}
-                                            component={RouterLink}
-                                        >
-                                            <EditRoundedIcon />
-                                        </IconButton>
                                     </TableCell>
                                 </TableRow>
                             ))}
