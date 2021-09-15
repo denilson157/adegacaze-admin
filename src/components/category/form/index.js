@@ -39,7 +39,7 @@ const FormCategory = (props) => {
         e.preventDefault()
 
         const erros = Validate.category(values, setErrors, errors)
-        debugger
+
 
         if (Validate.formIsValidate(erros)) {
             setLoading(true)
@@ -51,6 +51,7 @@ const FormCategory = (props) => {
                     name: resp.name
                 }))
                 .finally(() => setLoading(false))
+
         } else
             setErrors(erros)
 

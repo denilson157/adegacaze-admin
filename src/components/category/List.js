@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
     Box,
+    Button,
     Checkbox,
     Table,
     TableBody,
@@ -10,8 +11,13 @@ import {
     // TablePagination,
     Container,
     TableRow,
-    makeStyles
+    makeStyles,
+    IconButton
 } from '@material-ui/core';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import {
+    NavLink as RouterLink
+} from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -81,6 +87,9 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                 <TableCell>
                                     Name
                                 </TableCell>
+                                <TableCell>
+                                    Action
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -102,6 +111,16 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                     </TableCell>
                                     <TableCell>
                                         {category.name}
+                                    </TableCell>
+                                    <TableCell>
+                                        <IconButton
+                                            color="primary"
+                                            variant="contained"
+                                            to={`/app/category/store/${category.id}`}
+                                            component={RouterLink}
+                                        >
+                                            <EditRoundedIcon />
+                                        </IconButton>
                                     </TableCell>
                                 </TableRow>
                             ))}

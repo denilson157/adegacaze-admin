@@ -38,6 +38,7 @@ const CategoryList = () => {
 
     useEffect(() => {
         searchCategories()
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -52,6 +53,27 @@ const CategoryList = () => {
 
     const updateCategoriesList = (newList) => updateCategories(newList)
 
+    const deleteSelected = () => {
+        setLoading(true)
+
+        const categoriesDelete = categoriesList.filter(x => x.Checked).map(x => x.id)
+
+        const promises = []
+
+        categoriesDelete.forEach(id => {
+            promises.push(CategoryService.category_delete(id))
+        })
+
+        Promise
+            .all(promises)
+            .then((resp) => {
+                searchCategories()
+            })
+            .finally(() => setLoading(false))
+
+
+    }
+
 
     const classes = useStyles();
 
@@ -61,7 +83,7 @@ const CategoryList = () => {
                 <Helmet>
                     <title>Categorias</title>
                 </Helmet>
-                <Toolbar categories={categoriesList} />
+                <Toolbar deleteSelected={deleteSelected} categories={categoriesList} />
                 <List updateCategoriesList={updateCategoriesList} categories={categoriesList} />
             </Container>
         </Grid>
