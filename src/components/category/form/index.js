@@ -6,6 +6,7 @@ import { Grid, makeStyles, Container } from '@material-ui/core';
 
 import * as CategoryService from '../../../services/categoryService'
 import { useParams } from 'react-router';
+import { withSnackbar } from '../../snackbar'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -46,10 +47,14 @@ const FormCategory = (props) => {
 
             CategoryService
                 .category_save(values)
-                .then(resp => setValues({
-                    id: resp.id,
-                    name: resp.name
-                }))
+                .then(resp => {
+                    setValues({
+                        id: resp.id,
+                        name: resp.name
+                    })
+
+                    props.snackbarShowMessage("Salvo")
+                })
                 .finally(() => setLoading(false))
 
         } else
@@ -96,4 +101,4 @@ const FormCategory = (props) => {
     )
 }
 
-export default FormCategory
+export default withSnackbar(FormCategory)
