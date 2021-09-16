@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
     Box,
-    Button,
     Checkbox,
     Table,
     TableBody,
@@ -11,13 +9,8 @@ import {
     // TablePagination,
     Container,
     TableRow,
-    makeStyles,
-    IconButton
+    makeStyles
 } from '@material-ui/core';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import {
-    NavLink as RouterLink
-} from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CategoryListResults = ({ categories, updateCategoriesList }) => {
-    const [limit, setLimit] = useState(10);
-    const [page, setPage] = useState(0);
 
     const handleSelectAll = (event) => {
         categories.forEach((category) =>
@@ -54,14 +45,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
             categoriesUpdate[selectedIndex].Checked = !categoriesUpdate[selectedIndex].Checked
 
         updateCategoriesList(categoriesUpdate);
-    };
-
-    const handleLimitChange = (event) => {
-        setLimit(event.target.value);
-    };
-
-    const handlePageChange = (event, newPage) => {
-        setPage(newPage);
     };
 
     const classes = useStyles();
@@ -115,15 +98,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                     </Table>
                 </Box>
             </PerfectScrollbar>
-            {/* <TablePagination
-                component="div"
-                count={categories.length}
-                onPageChange={handlePageChange}
-                onRowsPerPageChange={handleLimitChange}
-                page={page}
-                rowsPerPage={limit}
-                rowsPerPageOptions={[5, 10, 25]}
-            /> */}
         </Container>
     );
 };

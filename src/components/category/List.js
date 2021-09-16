@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
     Box,
-    Button,
     Checkbox,
     Table,
     TableBody,
     TableCell,
     TableHead,
-    // TablePagination,
     Container,
     TableRow,
     makeStyles,
@@ -31,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CategoryListResults = ({ categories, updateCategoriesList }) => {
-    const [limit, setLimit] = useState(10);
-    const [page, setPage] = useState(0);
 
     const handleSelectAll = (event) => {
         categories.forEach((category) =>
@@ -56,14 +51,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
         updateCategoriesList(categoriesUpdate);
     };
 
-    const handleLimitChange = (event) => {
-        setLimit(event.target.value);
-    };
-
-    const handlePageChange = (event, newPage) => {
-        setPage(newPage);
-    };
-
     const classes = useStyles();
 
     return (
@@ -85,10 +72,10 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    Name
+                                    Nome
                                 </TableCell>
                                 <TableCell>
-                                    Action
+                                    Ação
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -128,15 +115,6 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                     </Table>
                 </Box>
             </PerfectScrollbar>
-            {/* <TablePagination
-                component="div"
-                count={categories.length}
-                onPageChange={handlePageChange}
-                onRowsPerPageChange={handleLimitChange}
-                page={page}
-                rowsPerPage={limit}
-                rowsPerPageOptions={[5, 10, 25]}
-            /> */}
         </Container>
     );
 };
