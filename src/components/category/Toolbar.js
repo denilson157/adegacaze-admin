@@ -1,5 +1,5 @@
 import {
-    Box,
+    CircularProgress,
     Button,
     // Card,
     // CardContent,
@@ -29,10 +29,14 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginRight: theme.spacing(2)
+    },
+    circular: {
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
     }
 }));
 
-const CategoryToolbar = ({ categories, deleteSelected }) => {
+const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
     const classes = useStyles();
     return (
         <Container className={classes.container}>
@@ -66,33 +70,10 @@ const CategoryToolbar = ({ categories, deleteSelected }) => {
             >
                 <DeleteRoundedIcon className={classes.icon} /> Excluir
             </Button>
-
-
-            {/* <Box sx={{ mt: 3 }}>
-                <Card>
-                    <CardContent>
-                        <TextField
-                            fullWidth
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment
-                                        position="start"
-                                    >
-                                        <SvgIcon
-                                            fontSize="small"
-                                            color="action"
-                                        >
-                                            <SearchRoundedIcon />
-                                        </SvgIcon>
-                                    </InputAdornment>
-                                )
-                            }}
-                            variant="outlined"
-                            placeholder="Pesquisar Categoria"
-                        />
-                    </CardContent>
-                </Card>
-            </Box> */}
+            {
+                loading &&
+                <CircularProgress className={classes.circular} />
+            }
         </Container>
     )
 }

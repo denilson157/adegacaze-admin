@@ -23,7 +23,7 @@ const initialFValues = {
     name: ''
 }
 
-const FormCategory = (props) => {
+const FormCategory = ({ snackbarShowMessage }) => {
     const classes = useStyles();
     const [loading, setLoading] = useState(false)
 
@@ -48,12 +48,13 @@ const FormCategory = (props) => {
             CategoryService
                 .category_save(values)
                 .then(resp => {
+
                     setValues({
-                        id: resp.id,
-                        name: resp.name
+                        id: resp.resp.id,
+                        name: resp.resp.name
                     })
 
-                    props.snackbarShowMessage("Salvo")
+                    snackbarShowMessage(resp.message)
                 })
                 .finally(() => setLoading(false))
 
@@ -95,6 +96,7 @@ const FormCategory = (props) => {
                     handleInputChange={handleInputChange}
                     errors={errors}
                     resetForm={resetForm}
+                    loading={loading}
                 />
             </Container>
         </Grid>

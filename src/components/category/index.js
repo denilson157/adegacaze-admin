@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Container, makeStyles, Grid } from '@material-ui/core';
 import Toolbar from './Toolbar'
 import List from './List'
-
+import { withSnackbar } from '../snackbar'
 import * as CategoryService from '../../services/categoryService'
 
 const useStyles = makeStyles((theme) => ({
@@ -15,17 +15,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const initialPageProps = {
-    loading: false
-}
 
-
-const CategoryList = () => {
+const CategoryList = ({ snackbarShowMessage }) => {
     const [categoriesList, setCategories] = useState([])
-    const [pageProps, setPageProps] = useState(initialPageProps);
-
-    const setLoading = (bool) => setPageProps({ ...pageProps, loading: bool })
-
+    const [loading, setLoading] = useState(false);
 
     const searchCategories = () => {
         setLoading(true)
@@ -67,7 +60,9 @@ const CategoryList = () => {
         Promise
             .all(promises)
             .then((resp) => {
+                console.log(resp)
                 searchCategories()
+                snackbarShowMessage(resp[0].message)
             })
             .finally(() => setLoading(false))
 
@@ -83,11 +78,11 @@ const CategoryList = () => {
                 <Helmet>
                     <title>Categorias</title>
                 </Helmet>
-                <Toolbar deleteSelected={deleteSelected} categories={categoriesList} />
+                <Toolbar deleteSelected={deleteSelected} loading={loading} categories={categoriesList} />
                 <List updateCategoriesList={updateCategoriesList} categories={categoriesList} />
             </Container>
         </Grid>
     );
 }
 
-export default CategoryList;
+export default withSnackbar(CategoryList);

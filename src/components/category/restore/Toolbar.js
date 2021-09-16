@@ -1,7 +1,8 @@
 import {
     Button,
     Container,
-    makeStyles
+    makeStyles,
+    CircularProgress
 } from '@material-ui/core';
 import RestoreFromTrashRoundedIcon from '@material-ui/icons/RestoreFromTrashRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
@@ -22,10 +23,14 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginRight: theme.spacing(2)
+    },
+    circular: {
+        marginRight: theme.spacing(2),
+        marginLeft: theme.spacing(2),
     }
 }));
 
-const CategoryToolbar = ({ categories, restoreSelected }) => {
+const CategoryToolbar = ({ categories, restoreSelected, loading }) => {
     const classes = useStyles();
     return (
         <Container className={classes.container}>
@@ -56,8 +61,12 @@ const CategoryToolbar = ({ categories, restoreSelected }) => {
                 onClick={restoreSelected}
                 className={classes.button}
             >
-                <RestoreFromTrashRoundedIcon className={classes.icon} /> Restorar
+                <RestoreFromTrashRoundedIcon className={classes.icon} /> Restaurar
             </Button>
+            {
+                loading &&
+                <CircularProgress className={classes.circular} />
+            }
 
 
         </Container>
