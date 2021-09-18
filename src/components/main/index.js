@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
     AppBar, Toolbar, IconButton, Typography, Hidden,
-    Drawer, CssBaseline, MenuList, makeStyles,
+    Drawer, CssBaseline, makeStyles,
     MenuItem
 } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
