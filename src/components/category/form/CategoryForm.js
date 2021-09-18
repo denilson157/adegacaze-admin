@@ -52,7 +52,7 @@ const CategoryForm = ({ handleSubmit, values, handleInputChange, errors, loading
                     <Box display="flex">
                         <Controls.Button
                             type="submit"
-                            text="Submit"
+                            text="Salvar"
                             onClick={handleSubmit}
                         />
                         <Box px={2}>
