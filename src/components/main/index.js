@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        paddingTop: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
-        paddingRigth: theme.spacing(3),
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+        paddingRigth: theme.spacing(2),
         [theme.breakpoints.up('md')]: {
             paddingLeft: drawerWidth
         },
@@ -52,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
     text: {
         fontWeight: 500
     },
+    menuItem: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+    }
 }));
 
 const Layout = () => {
@@ -62,14 +66,12 @@ const Layout = () => {
     const NavItem = ({
         href,
         icon: Icon,
-        title,
-        menuKey
+        title
     }) => {
         const classes = useStyles();
 
         return (
-
-            <MenuItem key={menuKey} component={Link} to={href}>
+            <MenuItem className={classes.menuItem} component={Link} to={href}>
                 <Icon className={classes.icon} />
                 <div className={classes.text} >
                     {title}
@@ -83,18 +85,17 @@ const Layout = () => {
             <Hidden smDown>
                 <div className={classes.toolbar} />
             </Hidden>
-            <MenuList>
-                {
-                    items.map((x, idx) =>
+            {
+                items.map((x, idx) =>
+                    <Fragment key={idx}>
                         <NavItem
                             href={x.href}
                             icon={x.icon}
                             title={x.title}
-                            menuKey={idx}
                         />
-                    )
-                }
-            </MenuList>
+                    </Fragment>
+                )
+            }
         </div>
     )
 

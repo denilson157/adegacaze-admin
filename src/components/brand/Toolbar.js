@@ -6,7 +6,6 @@ import {
     Typography,
     Box
 } from '@material-ui/core';
-
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import RestoreFromTrashRoundedIcon from '@material-ui/icons/RestoreFromTrashRounded';
@@ -36,27 +35,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
+const BrandToolbar = ({ brands, deleteSelected, loading }) => {
     const classes = useStyles();
     return (
         <Container className={classes.container}>
-            <Typography className={classes.pageName} variant="h4">Categorias</Typography>
+            <Typography className={classes.pageName} variant="h4">Marcas</Typography>
             <Box className={classes.buttons}>
 
                 <Button
                     color="primary"
                     variant="contained"
-                    to="/app/category/store"
+                    to="/app/brand/store"
                     component={RouterLink}
                     className={classes.button}
                 >
-                    <AddRoundedIcon className={classes.icon} />categoria
+                    <AddRoundedIcon className={classes.icon} />marca
                 </Button>
 
                 <Button
                     color="default"
                     variant="contained"
-                    to="/app/category/restore"
+                    to="/app/brand/restore"
                     component={RouterLink}
                     className={classes.button}
                 >
@@ -67,7 +66,7 @@ const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
                 <Button
                     color="secondary"
                     variant="contained"
-                    disabled={categories.length > 0 ? categories.every(x => !x.Checked) : true}
+                    disabled={brands.length > 0 ? brands.every(x => !x.Checked) : true}
                     onClick={deleteSelected}
                     className={classes.button}
                 >
@@ -82,4 +81,4 @@ const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
     )
 }
 
-export default CategoryToolbar;
+export default BrandToolbar;

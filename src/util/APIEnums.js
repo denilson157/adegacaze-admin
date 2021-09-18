@@ -1,3 +1,5 @@
 export const APIEnum = {
-    Category: "category"
+    Category: "category",
+    Brand: "brand"
+
 }
