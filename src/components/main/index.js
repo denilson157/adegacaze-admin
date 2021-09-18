@@ -162,7 +162,6 @@ const Layout = () => {
                 {sidebar}
 
                 <main className={classes.content}>
-                    <div className={classes.toolbar} />
                     <Outlet />
                 </main>
 
