@@ -1,4 +1,17 @@
-import { Main, Category, CategoryForm, CategoryRestore, Brand, BrandForm, BrandRestore } from './components'
+import {
+    Main,
+    Category,
+    CategoryForm,
+    CategoryRestore,
+
+    Brand,
+    BrandForm,
+    BrandRestore,
+
+    Product,
+    ProductForm,
+    ProductRestore,
+} from './components'
 
 const routes = [
     { path: '', element: <Main /> },
@@ -46,6 +59,28 @@ const routes = [
             {
                 path: 'brand/restore',
                 element: <BrandRestore />,
+
+            },
+            { path: '*', element: <Main to="/app" /> },
+
+            {
+                path: 'product',
+                element: <Product />
+
+            },
+            {
+                path: 'product/store',
+                element: <ProductForm />,
+
+            },
+            {
+                path: 'product/store/:id',
+                element: <ProductForm />,
+
+            },
+            {
+                path: 'product/restore',
+                element: <ProductRestore />,
 
             },
             { path: '*', element: <Main to="/app" /> }
