@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         maxWidth: '100%'
     },
+    imgPreview: {
+        width: '50px',
+        maxWidth: '100%',
+        heigth: 'auto'
+    }
 }));
 
 
@@ -75,6 +80,9 @@ const ProductListResults = ({ products, updateProductsList }) => {
                                     Nome
                                 </TableCell>
                                 <TableCell>
+                                    Preview
+                                </TableCell>
+                                <TableCell>
                                     Ação
                                 </TableCell>
                             </TableRow>
@@ -98,6 +106,9 @@ const ProductListResults = ({ products, updateProductsList }) => {
                                     </TableCell>
                                     <TableCell>
                                         {product.name}
+                                    </TableCell>
+                                    <TableCell>
+                                        <img src={product.img} alt={product.name} className={classes.imgPreview} />
                                     </TableCell>
                                     <TableCell>
                                         <IconButton

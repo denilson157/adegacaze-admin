@@ -19,13 +19,12 @@ export const product_get = productId =>
 
 
 export const product_save = product => {
-
-    product.img64 = product.file64
-
-    let apiSave = api().post(APIEnum.Product, JSON.stringify(product))
+    let apiSave;
 
     if (product.id)
         apiSave = api().put(`${APIEnum.Product}/${product?.id}`, JSON.stringify(product))
+    else
+        apiSave = api().post(APIEnum.Product, JSON.stringify(product))
 
     return new Promise((resolve, reject) =>
         apiSave
