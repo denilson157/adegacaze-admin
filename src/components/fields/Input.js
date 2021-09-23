@@ -3,9 +3,10 @@ import { TextField } from '@material-ui/core';
 
 const Input = props => {
 
-    const { name, label, value, error = null, onChange } = props;
+    const { name, label, value, error = null, onChange, type = 'text' } = props;
     return (
         <TextField
+            type={type}
             variant="outlined"
             label={label}
             name={name}

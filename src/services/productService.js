@@ -19,6 +19,9 @@ export const product_get = productId =>
 
 
 export const product_save = product => {
+
+    product.img64 = product.file64
+
     let apiSave = api().post(APIEnum.Product, JSON.stringify(product))
 
     if (product.id)

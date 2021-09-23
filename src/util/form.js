@@ -17,6 +17,8 @@ export const useForm = (initialValues, validateOnChange = false, validate) => {
             validate({ [name]: value })
     }
 
+
+
     const resetForm = () => {
         setValues(initialValues);
         setErrors({})
@@ -49,7 +51,7 @@ export const Form = (props) => {
     const classes = useStyles();
     const { children, ...other } = props;
     return (
-        <form className={classes.root} autoComplete="off" {...other}>
+        <form className={classes.root} encType="multipart/form-data" autoComplete="off" {...other}>
             {props.children}
         </form>
     )

@@ -60,7 +60,6 @@ const ProductList = ({ snackbarShowMessage }) => {
         Promise
             .all(promises)
             .then((resp) => {
-                console.log(resp)
                 searchProducts()
                 snackbarShowMessage(resp[0].message)
             })

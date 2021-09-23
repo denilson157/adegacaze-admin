@@ -16,6 +16,8 @@ export const withSnackbar = WrappedComponent => {
             setSeverity(severity);
             setDuration(duration);
             setOpen(true);
+
+            //error, warning, info, success
         };
 
         const handleClose = (event, reason) => {

@@ -5,6 +5,9 @@ import ProductForm from './ProductForm'
 import { Grid, makeStyles, Container } from '@material-ui/core';
 
 import * as ProductService from '../../../services/productService'
+import { brand_list } from '../../../services/brandService'
+
+
 import { useParams } from 'react-router';
 import { withSnackbar } from '../../snackbar'
 
@@ -20,12 +23,19 @@ const useStyles = makeStyles((theme) => ({
 
 const initialFValues = {
     id: 0,
-    name: ''
+    name: '',
+    price: '',
+    brand_id: "",
+    description: '',
+    promotion: false,
+    img: '',
+    img_id: ''
 }
 
 const FormProduct = ({ snackbarShowMessage }) => {
     const classes = useStyles();
     const [loading, setLoading] = useState(false)
+    const [brandList, setBrandList] = useState([])
 
     const {
         values,
@@ -44,18 +54,23 @@ const FormProduct = ({ snackbarShowMessage }) => {
 
         if (Validate.formIsValidate(erros)) {
             setLoading(true)
-
             ProductService
                 .product_save(values)
                 .then(resp => {
-
                     setValues({
                         id: resp.resp.id,
-                        name: resp.resp.name
+                        name: resp.resp.name,
+                        price: resp.resp.price,
+                        brand_id: resp.resp.brand_id,
+                        description: resp.resp.description,
+                        promotion: resp.resp.promotion,
+                        img: resp.resp.img,
+                        img_id: resp.resp.img_id,
                     })
 
                     snackbarShowMessage(resp.message)
                 })
+                .catch(() => snackbarShowMessage("Erro ao salvar produto", "error"))
                 .finally(() => setLoading(false))
 
         } else
@@ -72,7 +87,14 @@ const FormProduct = ({ snackbarShowMessage }) => {
 
             setValues({
                 id: product.id,
-                name: product.name
+                name: product.name,
+                price: product.price,
+                brand_id: product.brand_id,
+                description: product.description,
+                promotion: product.promotion === '1' ? true : false,
+                img: product.img,
+                img_id: product.img_id ? product.img_id : undefined,
+
             })
         }
         else
@@ -80,8 +102,35 @@ const FormProduct = ({ snackbarShowMessage }) => {
 
     }
 
+    const fillLists = () => {
+        let promises = [
+            brand_list()
+        ]
+        setLoading(true)
+
+
+        Promise.all(promises)
+            .then(resp => {
+                setBrandList(...resp)
+            })
+            .catch(() => {
+                snackbarShowMessage("Erro ao carregar listas para o formuláro", "error")
+            })
+            .finally(() => setLoading(false))
+
+    }
+
+    const attachmentImage = (imgInfo) =>
+        setValues({
+            ...values,
+            img_id: imgInfo.uuid,
+            img: imgInfo.originalUrl + imgInfo.name
+        })
+
+
     useEffect(() => {
 
+        fillLists()
         fillInitialValues()
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,6 +146,8 @@ const FormProduct = ({ snackbarShowMessage }) => {
                     errors={errors}
                     resetForm={resetForm}
                     loading={loading}
+                    brandList={brandList}
+                    imageAtt={attachmentImage}
                 />
             </Container>
         </Grid>

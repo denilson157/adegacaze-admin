@@ -3,10 +3,12 @@ import { getToken } from '../auth'
 
 export const APIUrl = "http://127.0.0.1:8000/api/";
 
-const instance = () =>
+const patternHeader = { 'Content-Type': 'application/json', 'Accept': 'text/html', "Authorization": `Bearer ${getToken()}` };
+
+const instance = (url = APIUrl, header = patternHeader) =>
     axios.create({
-        baseURL: `${APIUrl}`,
-        headers: { 'Content-Type': 'application/json', 'Accept': 'text/html', "Authorization": `Bearer ${getToken()}` }
+        baseURL: `${url}`,
+        headers: header
     });
 
 
