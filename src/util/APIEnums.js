@@ -2,6 +2,8 @@ export const APIEnum = {
     Category: "category",
     Brand: "brand",
     Product: "product",
+    Login: "login",
+    Logout: "logout",
 }
 
 export const UploadCareEnum = {

@@ -12,6 +12,7 @@ const Input = props => {
             name={name}
             value={value}
             onChange={onChange}
+            {...props}
             {...(error && { error: true, helperText: error })}
         />
     )

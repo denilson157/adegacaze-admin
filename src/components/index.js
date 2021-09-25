@@ -12,3 +12,6 @@ export { default as BrandRestore } from './brand/restore'
 export { default as Product } from './product'
 export { default as ProductForm } from './product/form'
 export { default as ProductRestore } from './product/restore'
+
+
+export { default as Login } from './login'

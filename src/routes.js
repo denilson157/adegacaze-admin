@@ -11,14 +11,21 @@ import {
     Product,
     ProductForm,
     ProductRestore,
+    Login
 } from './components'
 
-const routes = [
-    { path: '', element: <Main /> },
+export const routesGuest = [
+    { path: '/login', element: <Login /> },
+    { path: '*', element: <Login /> }
+]
+
+export const routesApp = [
+    { path: '*', element: <Main to="/app" /> },
     {
         path: "app",
         element: <Main />,
         children: [
+
             {
                 path: 'category',
                 element: <Category />
@@ -39,7 +46,7 @@ const routes = [
                 element: <CategoryRestore />,
 
             },
-            { path: '*', element: <Main to="/app" /> },
+
 
             {
                 path: 'brand',
@@ -61,7 +68,7 @@ const routes = [
                 element: <BrandRestore />,
 
             },
-            { path: '*', element: <Main to="/app" /> },
+
 
             {
                 path: 'product',
@@ -83,10 +90,8 @@ const routes = [
                 element: <ProductRestore />,
 
             },
-            { path: '*', element: <Main to="/app" /> }
+
 
         ],
     },
 ]
-
-export default routes;

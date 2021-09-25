@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom'
 import {
     AppBar, Toolbar, IconButton, Typography, Hidden,
     Drawer, CssBaseline, makeStyles,
-    MenuItem
+    MenuItem,
+    Box
 } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
 import { items } from './MenuItems'
 import { Outlet } from 'react-router-dom'
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import * as UserService from '../../services/userService'
+import { logout } from '../../services/auth'
 
 const drawerWidth = 190
 
@@ -63,6 +67,12 @@ const Layout = () => {
 
     const classes = useStyles();
 
+    const logoff = () => {
+        logout()
+        UserService.user_logout()
+        window.location.reload();
+    }
+
     const NavItem = ({
         href,
         icon: Icon,
@@ -113,6 +123,17 @@ const Layout = () => {
                 <Typography variant="h6" color="inherit" noWrap>
                     Adega Cazé
                 </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-haspopup="true"
+                    onClick={logoff}
+                    color="inherit"
+                >
+                    <ExitToAppRoundedIcon />
+                </IconButton>
             </Toolbar>
         </AppBar>
     )

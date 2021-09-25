@@ -1,10 +1,14 @@
 import { useRoutes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './theme';
-import routes from './routes';
+import {
+  routesGuest,
+  routesApp
+} from './routes';
+import { isAuthenticated } from './services/auth';
 
 const App = () => {
-  const content = useRoutes(routes);
+  const content = useRoutes(isAuthenticated() ? routesApp : routesGuest);
 
   return (
     <ThemeProvider theme={theme}>
