@@ -12,7 +12,9 @@ import { Outlet } from 'react-router-dom'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import * as UserService from '../../services/userService'
 import { logout } from '../../services/auth'
-
+import {
+    NavLink
+} from 'react-router-dom';
 const drawerWidth = 190
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +61,10 @@ const useStyles = makeStyles((theme) => ({
     menuItem: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
+    },
+    linkAdega: {
+        color: 'white',
+        textDecoration: 'none'
     }
 }));
 
@@ -120,9 +126,11 @@ const Layout = () => {
                 >
                     <Menu />
                 </IconButton>
-                <Typography variant="h6" color="inherit" noWrap>
-                    Adega Cazé
-                </Typography>
+                <NavLink className={classes.linkAdega} to="/app/home">
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Adega Cazé
+                    </Typography>
+                </NavLink>
                 <Box sx={{ flexGrow: 1 }} />
                 <IconButton
                     size="large"

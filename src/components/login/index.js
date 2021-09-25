@@ -8,6 +8,7 @@ import {
     TextField,
     Box,
     Typography,
+    CircularProgress,
     makeStyles
 } from '@material-ui/core';
 import { login } from '../../services/auth';
@@ -44,7 +45,7 @@ const Login = ({ snackbarShowMessage }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event)
+
         const data = new FormData(event.currentTarget);
 
 
@@ -61,8 +62,13 @@ const Login = ({ snackbarShowMessage }) => {
         UserService
             .user_login(obj)
             .then(resp => {
-                login(resp.token);
-                createBrowserHistory().go(0)
+                if (resp.resp) {
+
+                    login(resp.resp.token);
+                    createBrowserHistory().go(0)
+                } else
+                    snackbarShowMessage(resp.message, "error")
+
             })
             .catch(erro => {
                 snackbarShowMessage("Erro ao fazer login", "error")
@@ -121,7 +127,16 @@ const Login = ({ snackbarShowMessage }) => {
                         variant="contained"
                         className={classes.buttonLogin}
                     >
-                        Entrar
+                        {
+                            loading ?
+                                <CircularProgress
+                                    color="white"
+                                    className={classes.circular}
+                                />
+                                :
+                                'Entrar'
+                        }
+
                     </Button>
                 </Box>
             </Box>

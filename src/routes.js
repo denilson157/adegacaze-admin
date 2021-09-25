@@ -11,21 +11,26 @@ import {
     Product,
     ProductForm,
     ProductRestore,
-    Login
+    Login,
+    Home
 } from './components'
 
 export const routesGuest = [
     { path: '/login', element: <Login /> },
-    { path: '*', element: <Login /> }
+    // { path: '*', element: <Main /> }
 ]
 
 export const routesApp = [
-    { path: '*', element: <Main to="/app" /> },
+    {
+        path: "*",
+        element: <Main />,
+        children: [{ path: '', element: <Home /> }]
+    },
     {
         path: "app",
         element: <Main />,
         children: [
-
+            { path: 'home', element: <Home /> },
             {
                 path: 'category',
                 element: <Category />
