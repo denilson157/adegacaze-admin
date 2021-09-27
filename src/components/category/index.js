@@ -8,7 +8,6 @@ import * as CategoryService from '../../services/categoryService'
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        paddingTop: theme.spacing(10),
         margin: '0px',
         width: '100%',
         maxWidth: '100%'

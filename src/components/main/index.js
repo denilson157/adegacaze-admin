@@ -40,15 +40,16 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: drawerWidth,
     },
-    content: {
+    main: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
-        paddingRigth: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        paddingTop: "70px",
         [theme.breakpoints.up('md')]: {
             paddingLeft: drawerWidth
         },
+        overflowY: 'auto'
     },
     item: {
         display: "flex",
@@ -118,7 +119,7 @@ const Layout = () => {
     )
 
     const appBar = (
-        <AppBar position="absolute" className={classes.appBar}>
+        <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <IconButton
                     color="inherit"
@@ -198,11 +199,9 @@ const Layout = () => {
 
                 {sidebar}
 
-                <main className={classes.content}>
+                <main className={classes.main}>
                     <Content>
-                        <section>
-                            <Routes />
-                        </section>
+                        <Routes />
                     </Content>
                 </main>
 
