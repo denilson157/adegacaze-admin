@@ -46,7 +46,7 @@ const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
                 <Button
                     color="primary"
                     variant="contained"
-                    to="/app/category/store"
+                    to="/category/store"
                     component={RouterLink}
                     className={classes.button}
                 >
@@ -56,7 +56,7 @@ const CategoryToolbar = ({ categories, deleteSelected, loading }) => {
                 <Button
                     color="default"
                     variant="contained"
-                    to="/app/category/restore"
+                    to="/category/restore"
                     component={RouterLink}
                     className={classes.button}
                 >

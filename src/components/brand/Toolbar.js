@@ -45,7 +45,7 @@ const BrandToolbar = ({ brands, deleteSelected, loading }) => {
                 <Button
                     color="primary"
                     variant="contained"
-                    to="/app/brand/store"
+                    to="/brand/store"
                     component={RouterLink}
                     className={classes.button}
                 >
@@ -55,7 +55,7 @@ const BrandToolbar = ({ brands, deleteSelected, loading }) => {
                 <Button
                     color="default"
                     variant="contained"
-                    to="/app/brand/restore"
+                    to="/brand/restore"
                     component={RouterLink}
                     className={classes.button}
                 >

@@ -1,5 +1,7 @@
+
 import { Helmet } from 'react-helmet';
 import { Container, makeStyles, Grid } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -14,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
 
     const classes = useStyles();
+
 
     return (
         <Grid item sm={12}>

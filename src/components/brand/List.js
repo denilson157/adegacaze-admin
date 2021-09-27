@@ -103,7 +103,7 @@ const BrandListResults = ({ brands, updateBrandsList }) => {
                                         <IconButton
                                             color="primary"
                                             variant="contained"
-                                            to={`/app/brand/store/${brand.id}`}
+                                            to={`/brand/store/${brand.id}`}
                                             component={RouterLink}
                                         >
                                             <EditRoundedIcon />

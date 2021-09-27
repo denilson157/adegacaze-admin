@@ -59,7 +59,7 @@ const CategoryForm = ({ handleSubmit, values, handleInputChange, errors, loading
                             <Controls.Button
                                 text="Voltar"
                                 color="secondary"
-                                to="/app/category"
+                                to="/category"
                                 component={RouterLink}
                             />
                         </Box>

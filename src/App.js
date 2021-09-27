@@ -1,20 +1,13 @@
-import { useRoutes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
+import { BrowserRouter } from 'react-router-dom'
 import theme from './theme';
-import {
-  routesGuest,
-  routesApp
-} from './routes';
-import { isAuthenticated } from './services/auth';
+import { PrivateRoute } from './routes'
 
-const App = () => {
-  const content = useRoutes(isAuthenticated() ? routesApp : routesGuest);
+const App = () =>
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <PrivateRoute />
+    </BrowserRouter>
+  </ThemeProvider>
 
-  return (
-    <ThemeProvider theme={theme}>
-      {content}
-    </ThemeProvider>
-  );
-};
-
-export default App;
+export default App

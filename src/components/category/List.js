@@ -103,7 +103,7 @@ const CategoryListResults = ({ categories, updateCategoriesList }) => {
                                         <IconButton
                                             color="primary"
                                             variant="contained"
-                                            to={`/app/category/store/${category.id}`}
+                                            to={`/category/store/${category.id}`}
                                             component={RouterLink}
                                         >
                                             <EditRoundedIcon />

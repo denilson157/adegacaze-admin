@@ -37,7 +37,7 @@ const ProductToolbar = ({ products, restoreSelected, loading }) => {
             <Button
                 color="default"
                 variant="contained"
-                to="/app/product"
+                to="/product"
                 component={RouterLink}
                 className={classes.button}
             >
@@ -47,7 +47,7 @@ const ProductToolbar = ({ products, restoreSelected, loading }) => {
             <Button
                 color="primary"
                 variant="contained"
-                to="/app/product/store"
+                to="/product/store"
                 component={RouterLink}
                 className={classes.button}
             >

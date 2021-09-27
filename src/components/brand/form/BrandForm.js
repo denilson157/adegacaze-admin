@@ -59,7 +59,7 @@ const BrandForm = ({ handleSubmit, values, handleInputChange, errors, loading })
                             <Controls.Button
                                 text="Voltar"
                                 color="secondary"
-                                to="/app/brand"
+                                to="/brand"
                                 component={RouterLink}
                             />
                         </Box>

@@ -15,88 +15,53 @@ import {
     Home
 } from './components'
 
-export const routesGuest = [
-    { path: '/login', element: <Login /> },
-    // { path: '*', element: <Main /> }
-]
+import React, { Fragment } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-export const routesApp = [
-    {
-        path: "*",
-        element: <Main />,
-        children: [{ path: '', element: <Home /> }]
-    },
-    {
-        path: "app",
-        element: <Main />,
-        children: [
-            { path: 'home', element: <Home /> },
-            {
-                path: 'category',
-                element: <Category />
-
-            },
-            {
-                path: 'category/store',
-                element: <CategoryForm />,
-
-            },
-            {
-                path: 'category/store/:id',
-                element: <CategoryForm />,
-
-            },
-            {
-                path: 'category/restore',
-                element: <CategoryRestore />,
-
-            },
+import { isAuthenticated } from "./services/auth";
 
 
-            {
-                path: 'brand',
-                element: <Brand />
 
-            },
-            {
-                path: 'brand/store',
-                element: <BrandForm />,
+export const PrivateRoute = props => (
+    <Fragment>
 
-            },
-            {
-                path: 'brand/store/:id',
-                element: <BrandForm />,
+        {isAuthenticated() ?
+            <Switch>
+                <Fragment>
+                    <Route exact path="/" render={() => <Redirect to="/home" />} />
+                    <Route path='/' component={Main} />
+                </Fragment>
+            </Switch>
+            :
+            <Switch>
+                <Route component={Login} />
+            </Switch>
+        }
 
-            },
-            {
-                path: 'brand/restore',
-                element: <BrandRestore />,
+    </Fragment>
+)
 
-            },
+export const Routes = () =>
+    <Switch>
+        <Route path="/home" component={Home} />
 
+        <Route path='/category' component={Category} />
+        <Route path='/category/store' component={CategoryForm} />
+        <Route path='/category/store/:id' component={CategoryForm} />
+        <Route path='/category/restore' component={CategoryRestore} />
 
-            {
-                path: 'product',
-                element: <Product />
+        <Route path='/brand' component={Brand} />
+        <Route path='/brand/store' component={BrandForm} />
+        <Route path='/brand/store/:id' component={BrandForm} />
+        <Route path='/brand/restore' component={BrandRestore} />
 
-            },
-            {
-                path: 'product/store',
-                element: <ProductForm />,
-
-            },
-            {
-                path: 'product/store/:id',
-                element: <ProductForm />,
-
-            },
-            {
-                path: 'product/restore',
-                element: <ProductRestore />,
-
-            },
+        <Route path='/product' component={Product} />
+        <Route path='/product/store' component={ProductForm} />
+        <Route path='/product/store/:id' component={ProductForm} />
+        <Route path='/product/restore' component={ProductRestore} />
 
 
-        ],
-    },
-]
+        {/* <Route path='/' component={Home} /> */}
+        <Route path="/" render={() => <Redirect to="/home" />} />
+
+    </Switch>

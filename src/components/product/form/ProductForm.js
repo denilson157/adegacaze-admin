@@ -131,7 +131,7 @@ const ProductForm = ({
                             <Controls.Button
                                 text="Voltar"
                                 color="secondary"
-                                to="/app/product"
+                                to="/product"
                                 component={RouterLink}
                             />
                         </Box>

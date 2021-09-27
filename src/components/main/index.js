@@ -8,13 +8,15 @@ import {
 } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
 import { items } from './MenuItems'
-import { Outlet } from 'react-router-dom'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import * as UserService from '../../services/userService'
 import { logout } from '../../services/auth'
 import {
     NavLink
 } from 'react-router-dom';
+import { Routes } from '../../routes'
+
+
 const drawerWidth = 190
 
 const useStyles = makeStyles((theme) => ({
@@ -126,7 +128,7 @@ const Layout = () => {
                 >
                     <Menu />
                 </IconButton>
-                <NavLink className={classes.linkAdega} to="/app/home">
+                <NavLink className={classes.linkAdega} to="/home">
                     <Typography variant="h6" color="inherit" noWrap>
                         Adega Cazé
                     </Typography>
@@ -181,8 +183,13 @@ const Layout = () => {
         </>
     )
 
+    const Content = (props) =>
+        <div>
+            {props.children}
+        </div>
+
     return (
-        <Fragment>
+        <>
             <CssBaseline />
 
             <div className={classes.root}>
@@ -192,11 +199,15 @@ const Layout = () => {
                 {sidebar}
 
                 <main className={classes.content}>
-                    <Outlet />
+                    <Content>
+                        <section>
+                            <Routes />
+                        </section>
+                    </Content>
                 </main>
 
             </div>
-        </Fragment>
+        </>
     )
 }
 

@@ -114,7 +114,7 @@ const ProductListResults = ({ products, updateProductsList }) => {
                                         <IconButton
                                             color="primary"
                                             variant="contained"
-                                            to={`/app/product/store/${product.id}`}
+                                            to={`/product/store/${product.id}`}
                                             component={RouterLink}
                                         >
                                             <EditRoundedIcon />
