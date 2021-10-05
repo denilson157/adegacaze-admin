@@ -191,6 +191,7 @@ const Layout = () => {
 
     return (
         <>
+
             <CssBaseline />
 
             <div className={classes.root}>
@@ -200,9 +201,13 @@ const Layout = () => {
                 {sidebar}
 
                 <main className={classes.main}>
+
                     <Content>
+
                         <Routes />
+
                     </Content>
+
                 </main>
 
             </div>

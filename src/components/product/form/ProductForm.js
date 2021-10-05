@@ -95,25 +95,12 @@ const ProductForm = ({
                         name="img"
                         label="Imagem URL"
                         type="text"
-                        value={values.img}
+                        value={values.img_id}
                         onChange={handleInputChange}
                         error={errors.img}
                         disabled={true}
                     />
-
-                    <Box display="none">
-
-                        <Controls.Input
-                            name="img_id"
-                            label="Imagem URL"
-                            type="text"
-                            value={values.img_id}
-                            onChange={handleInputChange}
-                            error={errors.img_id}
-                            disabled={true}
-                        />
-
-                    </Box>
+                    
 
                     <Box>
                         <Controls.UploadImage

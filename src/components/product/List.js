@@ -108,7 +108,7 @@ const ProductListResults = ({ products, updateProductsList }) => {
                                         {product.name}
                                     </TableCell>
                                     <TableCell>
-                                        <img src={product.img} alt={product.name} className={classes.imgPreview} />
+                                        <img src={product.img_id} alt={product.name} className={classes.imgPreview} />
                                     </TableCell>
                                     <TableCell>
                                         <IconButton

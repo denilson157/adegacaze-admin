@@ -21,7 +21,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
 
-
 export const PrivateRoute = props => (
     <Fragment>
 
@@ -45,20 +44,20 @@ export const Routes = () =>
     <Switch>
         <Route path="/home" component={Home} />
 
-        <Route path='/category' component={Category} />
-        <Route path='/category/store' component={CategoryForm} />
-        <Route path='/category/store/:id' component={CategoryForm} />
-        <Route path='/category/restore' component={CategoryRestore} />
+        <Route exact path='/category' component={Category} />
+        <Route exact path='/category/store' component={CategoryForm} />
+        <Route exact path='/category/store/:id' component={CategoryForm} />
+        <Route exact path='/category/restore' component={CategoryRestore} />
 
-        <Route path='/brand' component={Brand} />
-        <Route path='/brand/store' component={BrandForm} />
-        <Route path='/brand/store/:id' component={BrandForm} />
-        <Route path='/brand/restore' component={BrandRestore} />
+        <Route exact path='/brand' component={Brand} />
+        <Route exact path='/brand/store' component={BrandForm} />
+        <Route exact path='/brand/store/:id' component={BrandForm} />
+        <Route exact path='/brand/restore' component={BrandRestore} />
 
-        <Route path='/product' component={Product} />
-        <Route path='/product/store' component={ProductForm} />
-        <Route path='/product/store/:id' component={ProductForm} />
-        <Route path='/product/restore' component={ProductRestore} />
+        <Route exact path='/product' component={Product} />
+        <Route exact path='/product/store' component={ProductForm} />
+        <Route exact path='/product/store/:id' component={ProductForm} />
+        <Route exact path='/product/restore' component={ProductRestore} />
 
 
         {/* <Route path='/' component={Home} /> */}
