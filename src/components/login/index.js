@@ -52,8 +52,7 @@ const Login = ({ snackbarShowMessage }) => {
         const obj = {
             email: data.get('email'),
             password: data.get('password'),
-            device_name: "Desktop",
-            _token: "{{ csrf_token() }}"
+            device_name: "Desktop"
         };
 
         setLoading(true)

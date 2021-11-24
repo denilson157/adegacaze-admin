@@ -38,12 +38,24 @@ const product = (fValues, errors) => {
     return errorReturn
 }
 
+
+const order = (fValues, errors) => {
+
+    let errorReturn = { ...errors }
+
+    if (!fValues.status_id)
+        errorReturn.status_id = "Status obrigatório"
+
+    return errorReturn
+}
+
 const formIsValidate = (form) => form && Object.keys(form).length === 0 && form.constructor === Object
 
 const Validate = {
     category,
     brand,
     product,
+    order,
     formIsValidate
 }
 

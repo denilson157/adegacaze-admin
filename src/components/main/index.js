@@ -7,7 +7,7 @@ import {
     Box
 } from '@material-ui/core'
 import { Menu } from '@material-ui/icons'
-import { items } from './MenuItems'
+import { items } from './menuItems'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import * as UserService from '../../services/userService'
 import { logout } from '../../services/auth'

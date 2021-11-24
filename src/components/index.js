@@ -13,6 +13,8 @@ export { default as Product } from './product'
 export { default as ProductForm } from './product/form'
 export { default as ProductRestore } from './product/restore'
 
+export { default as Order } from './order'
+export { default as OrderForm } from './order/form'
 
 export { default as Login } from './login'
 export { default as Home } from './home'

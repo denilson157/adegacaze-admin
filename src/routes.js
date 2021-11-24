@@ -11,6 +11,10 @@ import {
     Product,
     ProductForm,
     ProductRestore,
+
+    Order,
+    OrderForm,
+
     Login,
     Home
 } from './components'
@@ -58,6 +62,9 @@ export const Routes = () =>
         <Route exact path='/product/store' component={ProductForm} />
         <Route exact path='/product/store/:id' component={ProductForm} />
         <Route exact path='/product/restore' component={ProductRestore} />
+
+        <Route exact path='/order' component={Order} />
+        <Route exact path='/order/details/:id' component={OrderForm} />
 
 
         {/* <Route path='/' component={Home} /> */}

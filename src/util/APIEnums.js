@@ -4,6 +4,7 @@ export const APIEnum = {
     Product: "product",
     Login: "login",
     Logout: "logout",
+    Order: "order",
 }
 
 export const UploadCareEnum = {

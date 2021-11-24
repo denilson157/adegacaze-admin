@@ -13,7 +13,8 @@ const Select = props => {
                 name={name}
                 value={value}
                 onChange={onChange}
-                >
+                {...props}
+            >
                 <MenuItem value="">None</MenuItem>
                 {
                     options.map(
