@@ -4,7 +4,7 @@ import { Container, makeStyles, Grid } from '@material-ui/core';
 import Toolbar from './Toolbar'
 import List from './List'
 import { withSnackbar } from '../snackbar'
-import * as OrderService from '../../services/orderService'
+import * as UserService from '../../services/userService'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -16,22 +16,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const OrderList = ({ snackbarShowMessage }) => {
-    const [ordersList, setOrders] = useState([])
+const UserList = ({ snackbarShowMessage }) => {
+    const [usersList, setUsers] = useState([])
     const [loading, setLoading] = useState(false);
 
-    const searchOrders = () => {
+    const searchUsers = () => {
         setLoading(true)
 
-        OrderService
-            .order_list()
-            .then(resp => updateOrders(createInitialList(resp)))
-            .catch(() => snackbarShowMessage("Erro ao consultar pedidos", "error"))
+        UserService
+            .user_list()
+            .then(resp => updateUsers(createInitialList(resp)))
+            .catch(() => snackbarShowMessage("Erro ao consultar usuários", "error"))
             .finally(() => setLoading(false))
     }
 
     useEffect(() => {
-        searchOrders()
+        searchUsers()
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -43,7 +43,7 @@ const OrderList = ({ snackbarShowMessage }) => {
         return list
     }
 
-    const updateOrders = (newList) => setOrders(newList.slice())
+    const updateUsers = (newList) => setUsers(newList.slice())
 
     const classes = useStyles();
 
@@ -51,13 +51,13 @@ const OrderList = ({ snackbarShowMessage }) => {
         <Grid item sm={12}>
             <Container className={classes.container}>
                 <Helmet>
-                    <title>Pedidos</title>
+                    <title>Usuários</title>
                 </Helmet>
-                <Toolbar loading={loading} orders={ordersList} />
-                <List orders={ordersList} />
+                <Toolbar loading={loading} users={usersList} />
+                <List users={usersList} />
             </Container>
         </Grid>
     );
 }
 
-export default withSnackbar(OrderList);
+export default withSnackbar(UserList);

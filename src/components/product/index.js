@@ -26,6 +26,7 @@ const ProductList = ({ snackbarShowMessage }) => {
         ProductService
             .product_list()
             .then(resp => updateProducts(createInitialList(resp)))
+            .catch(() => snackbarShowMessage("Erro ao consultar marcas", "error"))
             .finally(() => setLoading(false))
     }
 

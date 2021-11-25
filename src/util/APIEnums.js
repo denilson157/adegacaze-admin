@@ -5,6 +5,7 @@ export const APIEnum = {
     Login: "login",
     Logout: "logout",
     Order: "order",
+    User: "user",
 }
 
 export const UploadCareEnum = {

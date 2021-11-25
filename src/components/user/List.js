@@ -15,7 +15,6 @@ import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import {
     NavLink as RouterLink
 } from 'react-router-dom';
-import { format_date, format_double } from '../../util/formatString';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,14 +26,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const status = [
-    { id: 1, name: "Pedido realizado" },
-    { id: 2, name: "Saiu para entrega" },
-    { id: 3, name: "Finalizado" },
-]
 
-
-const OrderListResults = ({ orders, updateOrdersList }) => {
+const UserListResults = ({ users }) => {
 
     const classes = useStyles();
 
@@ -49,13 +42,7 @@ const OrderListResults = ({ orders, updateOrdersList }) => {
                                     Id
                                 </TableCell>
                                 <TableCell>
-                                    Data Pedido
-                                </TableCell>
-                                <TableCell>
-                                    Total
-                                </TableCell>
-                                <TableCell>
-                                    Status
+                                    Nome
                                 </TableCell>
                                 <TableCell>
                                     Ações
@@ -63,32 +50,26 @@ const OrderListResults = ({ orders, updateOrdersList }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {orders.map((order) => {
+                            {users.map((user) => {
 
                                 return (
                                     <TableRow
                                         hover
-                                        key={order.id}
-                                        selected={order.Checked}
+                                        key={user.id}
                                         color="primary"
                                     >
                                         <TableCell>
-                                            {order.id}
+                                            {user.id}
                                         </TableCell>
                                         <TableCell>
-                                            {format_date(order.created_at)}
+                                            {user.name}
                                         </TableCell>
-                                        <TableCell>
-                                            {format_double(order.products.map(x => parseFloat(x.pivot.price * x.pivot.quantity)).reduce((a, b) => a += b))}
-                                        </TableCell>
-                                        <TableCell>
-                                            {status.find(x => x.id === order.id)?.name}
-                                        </TableCell>
+
                                         <TableCell>
                                             <IconButton
                                                 color="primary"
                                                 variant="contained"
-                                                to={`/order/details/${order.id}`}
+                                                to={`/user/details/${user.id}`}
                                                 component={RouterLink}
                                             >
                                                 <RemoveRedEyeIcon />
@@ -105,4 +86,4 @@ const OrderListResults = ({ orders, updateOrdersList }) => {
     );
 };
 
-export default OrderListResults;
+export default UserListResults;

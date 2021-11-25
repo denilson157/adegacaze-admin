@@ -16,5 +16,8 @@ export { default as ProductRestore } from './product/restore'
 export { default as Order } from './order'
 export { default as OrderForm } from './order/form'
 
+export { default as User } from './user'
+export { default as UserForm } from './user/form'
+
 export { default as Login } from './login'
 export { default as Home } from './home'

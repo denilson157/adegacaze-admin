@@ -3,6 +3,7 @@ import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded'
 import LocalOfferRoundedIcon from '@material-ui/icons/LocalOfferRounded';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import ReceiptIcon from '@material-ui/icons/Receipt';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export const items = [
     {
@@ -24,5 +25,10 @@ export const items = [
         href: '/order',
         icon: ReceiptIcon,
         title: 'Pedidos'
+    },
+    {
+        href: '/user',
+        icon: AccountCircleIcon,
+        title: 'Usuários'
     }
 ];

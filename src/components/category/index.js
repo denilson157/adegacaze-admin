@@ -8,6 +8,7 @@ import * as CategoryService from '../../services/categoryService'
 
 const useStyles = makeStyles((theme) => ({
     container: {
+        paddingTop: theme.spacing(10),
         margin: '0px',
         width: '100%',
         maxWidth: '100%'
@@ -25,6 +26,7 @@ const CategoryList = ({ snackbarShowMessage }) => {
         CategoryService
             .category_list()
             .then(resp => updateCategories(createInitialList(resp)))
+            .catch(() => snackbarShowMessage("Erro ao consultar categorias", "error"))
             .finally(() => setLoading(false))
     }
 

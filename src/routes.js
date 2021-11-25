@@ -14,6 +14,9 @@ import {
 
     Order,
     OrderForm,
+    
+    User,
+    UserForm,
 
     Login,
     Home
@@ -65,6 +68,9 @@ export const Routes = () =>
 
         <Route exact path='/order' component={Order} />
         <Route exact path='/order/details/:id' component={OrderForm} />
+
+        <Route exact path='/user' component={User} />
+        <Route exact path='/user/details/:id' component={UserForm} />
 
 
         {/* <Route path='/' component={Home} /> */}
