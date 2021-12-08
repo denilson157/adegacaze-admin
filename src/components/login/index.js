@@ -62,9 +62,13 @@ const Login = ({ snackbarShowMessage }) => {
             .user_login(obj)
             .then(resp => {
                 if (resp.resp) {
+                    debugger
+                    if (resp.resp.user.isAdmin) {
 
-                    login(resp.resp.token);
-                    createBrowserHistory().go(0)
+                        login(resp.resp.token);
+                        createBrowserHistory().go(0)
+                    } else
+                        snackbarShowMessage("área permitida somente para administradores.", "error")
                 } else
                     snackbarShowMessage(resp.message, "error")
 

@@ -23,6 +23,7 @@ const ProductForm = ({
     errors,
     loading,
     brandList,
+    categoryList,
     imageAtt
 }) => {
     const classes = useStyles();
@@ -71,6 +72,14 @@ const ProductForm = ({
                         value={values.brand_id}
                         onChange={handleInputChange}
                         error={errors.brand_id}
+                    />
+                    <Controls.Select
+                        name="category_id"
+                        label="Categoria"
+                        options={categoryList}
+                        value={values.category_id}
+                        onChange={handleInputChange}
+                        error={errors.category_id}
                     />
 
                     <Controls.Input

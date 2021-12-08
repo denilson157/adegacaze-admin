@@ -58,6 +58,9 @@ const OrderListResults = ({ orders, updateOrdersList }) => {
                                     Status
                                 </TableCell>
                                 <TableCell>
+                                    Feito por
+                                </TableCell>
+                                <TableCell>
                                     Ações
                                 </TableCell>
                             </TableRow>
@@ -82,7 +85,10 @@ const OrderListResults = ({ orders, updateOrdersList }) => {
                                             {format_double(order.products.map(x => parseFloat(x.pivot.price * x.pivot.quantity)).reduce((a, b) => a += b))}
                                         </TableCell>
                                         <TableCell>
-                                            {status.find(x => x.id === order.id)?.name}
+                                            {status.find(x => x.id === order.status_id)?.name}
+                                        </TableCell>
+                                        <TableCell>
+                                            {order.user?.name}
                                         </TableCell>
                                         <TableCell>
                                             <IconButton

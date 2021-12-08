@@ -6,6 +6,7 @@ import { Grid, makeStyles, Container } from '@material-ui/core';
 
 import * as ProductService from '../../../services/productService'
 import { brand_list } from '../../../services/brandService'
+import { category_list } from '../../../services/categoryService'
 
 
 import { useParams } from 'react-router';
@@ -29,13 +30,15 @@ const initialFValues = {
     description: '',
     promotion: false,
     img: '',
-    img_id: ''
+    img_id: '',
+    category_id: ""
 }
 
 const FormProduct = ({ snackbarShowMessage }) => {
     const classes = useStyles();
     const [loading, setLoading] = useState(false)
     const [brandList, setBrandList] = useState([])
+    const [categoryList, setCategoryList] = useState([])
 
     const {
         values,
@@ -66,6 +69,7 @@ const FormProduct = ({ snackbarShowMessage }) => {
                         promotion: resp.resp.promotion,
                         img: resp.resp.img,
                         img_id: resp.resp.img_id,
+                        category_id: resp.resp.category_id
                     })
 
                     snackbarShowMessage(resp.message)
@@ -94,6 +98,7 @@ const FormProduct = ({ snackbarShowMessage }) => {
                 promotion: product.promotion === '1' ? true : false,
                 img: product.img,
                 img_id: product.img_id ? product.img_id : undefined,
+                category_id: product.category_id
 
             })
         }
@@ -104,14 +109,17 @@ const FormProduct = ({ snackbarShowMessage }) => {
 
     const fillLists = () => {
         let promises = [
-            brand_list()
+            brand_list(),
+            category_list()
         ]
         setLoading(true)
 
 
         Promise.all(promises)
             .then(resp => {
-                setBrandList(...resp)
+                console.log(resp[1])
+                setBrandList(resp[0])
+                setCategoryList(resp[1])
             })
             .catch(() => {
                 snackbarShowMessage("Erro ao carregar listas para o formuláro", "error")
@@ -120,12 +128,12 @@ const FormProduct = ({ snackbarShowMessage }) => {
 
     }
 
-    const attachmentImage = (imgInfo) =>
+    const attachmentImage = (imgInfo) => {
         setValues({
-            ...values,
-            img_id: imgInfo.uuid,
-            img: imgInfo.originalUrl + imgInfo.name
+            ...values,            
+            img_id: imgInfo.originalUrl + imgInfo.name
         })
+    }
 
 
     useEffect(() => {
@@ -148,6 +156,7 @@ const FormProduct = ({ snackbarShowMessage }) => {
                     loading={loading}
                     brandList={brandList}
                     imageAtt={attachmentImage}
+                    categoryList={categoryList}
                 />
             </Container>
         </Grid>

@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
 const initialFValues = {
     id: 0,
-    name: ''
+    name: '',
+    email: '',
+    birthday: '',
+    cellphone: ''
 }
 
 const FormUser = ({ snackbarShowMessage }) => {
@@ -30,22 +33,59 @@ const FormUser = ({ snackbarShowMessage }) => {
     const {
         values,
         setValues,
+        errors,
+        setErrors,
         handleInputChange,
         resetForm
     } = useForm(initialFValues, true, Validate.user)
 
+
+    const handleSubmit = async e => {
+        e.preventDefault()
+        
+        const erros = Validate.user(values, setErrors, errors)
+
+
+        if (Validate.formIsValidate(erros)) {
+            setLoading(true)
+            UserService
+                .user_save(values)
+                .then(resp => {
+                    setValues({
+                        id: resp.resp.id,
+                        name: resp.resp.name,
+                        email: resp.resp.email,
+                        birthday: resp.resp.birthday,
+                        cellphone: resp.resp.cellphone
+
+                    })
+
+                    snackbarShowMessage(resp.message)
+                })
+                .catch(() => snackbarShowMessage("Erro ao salvar usuário", "error"))
+                .finally(() => setLoading(false))
+
+        } else
+            setErrors(erros)
+
+    }
 
     const params = useParams()
 
     const fillInitialValues = async () => {
         if (params.id) {
             setLoading(true)
+
             const user = await UserService.user_get(params.id)
 
             setValues({
                 id: user.id,
-                name: user.name
+                name: user.name,
+                email: user.email,
+                birthday: user.birthday,
+                cellphone: user.cellphone
             })
+
             setLoading(false)
         }
         else
@@ -64,9 +104,10 @@ const FormUser = ({ snackbarShowMessage }) => {
         <Grid item xs={12}>
             <Container className={classes.container}>
                 <UserForm
-                    handleSubmit={() => { }}
+                    handleSubmit={handleSubmit}
                     values={values}
                     handleInputChange={handleInputChange}
+                    errors={errors}
                     resetForm={resetForm}
                     loading={loading}
                 />

@@ -32,12 +32,27 @@ const product = (fValues, errors) => {
         errorReturn.brand_id = "Marca obrigatória"
     if (!fValues.description)
         errorReturn.description = "Descrição Obrigatória"
-    if (!fValues.img)
-        errorReturn.img = "Imagem Obrigatória"
+    if (!fValues.img_id)
+        errorReturn.img_id = "Imagem Obrigatória"
 
     return errorReturn
 }
 
+const user = (fValues, errors) => {
+
+    let errorReturn = { ...errors }
+
+    if (!fValues.name)
+        errorReturn.name = "Nome obrigatóio"
+    if (!fValues.email)
+        errorReturn.email = "Email obrigatório"
+    if (!fValues.birthday)
+        errorReturn.birthday = "Aniversário obrigatório"
+    if (!fValues.cellphone)
+        errorReturn.cellphone = "Número Obrigatório"
+
+    return errorReturn
+}
 
 const order = (fValues, errors) => {
 
@@ -56,6 +71,7 @@ const Validate = {
     brand,
     product,
     order,
+    user,
     formIsValidate
 }
 

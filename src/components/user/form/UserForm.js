@@ -42,22 +42,59 @@ const OrderForm = ({ handleSubmit, values, handleInputChange, errors, loading })
                         className={classes.input}
                         value={values.id}
                         onChange={handleInputChange}
+                        error={errors.id}
                     />
                     <Controls.Input
                         name="name"
-                        disabled={true}
                         label="Nome"
                         className={classes.input}
                         value={values.name}
                         onChange={handleInputChange}
+                        error={errors.name}
+                    />
+                    <Controls.Input
+                        name="email"
+                        label="Email"
+                        className={classes.input}
+                        value={values.email}
+                        onChange={handleInputChange}
+                        error={errors.email}
+                    />
+                    <Controls.Input
+                        name="birthday"
+                        label="Aniversário"
+                        type="date"
+                        className={classes.input}
+                        value={values.birthday}
+                        onChange={handleInputChange}
+                        error={errors.birthday}
+                    />
+
+                    <Controls.Input
+                        name="cellphone"
+                        label="Número"
+                        type="number"
+                        step="1"
+                        className={classes.input}
+                        value={values.cellphone}
+                        onChange={handleInputChange}
+                        error={errors.cellphone}
                     />
                     <Box display="flex">
                         <Controls.Button
-                            text="Voltar"
-                            color="secondary"
-                            to="/user"
-                            component={RouterLink}
+                            type="submit"
+                            text="Salvar"
+                            onClick={handleSubmit}
                         />
+                        <Box px={2}>
+
+                            <Controls.Button
+                                text="Voltar"
+                                color="secondary"
+                                to="/user"
+                                component={RouterLink}
+                            />
+                        </Box>
                     </Box>
 
                 </Grid>

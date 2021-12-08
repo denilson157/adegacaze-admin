@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const OrderForm = ({ handleSubmit, values, handleInputChange, errors, loading }) => {
 
     const classes = useStyles();
-    const blockUpdate = values.status_id === 3
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
@@ -122,7 +122,6 @@ const OrderForm = ({ handleSubmit, values, handleInputChange, errors, loading })
                                     { id: 3, name: "Finalizado" },
                                 ]
                             }
-                            disabled={blockUpdate}
                             value={values.status_id}
                             onChange={handleInputChange}
                         />
@@ -146,7 +145,6 @@ const OrderForm = ({ handleSubmit, values, handleInputChange, errors, loading })
                             type="submit"
                             text="Atualizar status"
                             onClick={handleSubmit}
-                            disabled={blockUpdate}
                         />
                         <Box px={2}>
                             <Controls.Button

@@ -35,6 +35,7 @@ const initialFValues = {
 const FormOrder = ({ snackbarShowMessage }) => {
     const classes = useStyles();
     const [loading, setLoading] = useState(false)
+    const [orderFinish, setOrderFinish] = useState(false)
 
     const {
         values,
@@ -51,7 +52,7 @@ const FormOrder = ({ snackbarShowMessage }) => {
         const erros = Validate.brand(values, setErrors, errors)
 
 
-        if (Validate.formIsValidate(erros)) {
+        if (Validate.formIsValidate(erros) && !orderFinish) {
             setLoading(true)
 
             OrderService
@@ -99,6 +100,7 @@ const FormOrder = ({ snackbarShowMessage }) => {
                 observation: order.observation,
                 date_finish: order.date_finish
             })
+            setOrderFinish(order.status_id === 3)
         }
         else
             setValues(initialFValues)

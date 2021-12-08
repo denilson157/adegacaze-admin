@@ -11,6 +11,14 @@ export const user_list = () =>
     )
 
 
+export const user_save = (user) =>
+    new Promise((resolve, reject) =>
+        api()
+            .put(`${APIEnum.User}/${user.id}`, JSON.stringify(user))
+            .then(resp => resolve(resp.data))
+            .catch(error => reject(error))
+    )
+
 
 export const user_get = (id) =>
     new Promise((resolve, reject) =>
