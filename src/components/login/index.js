@@ -62,7 +62,7 @@ const Login = ({ snackbarShowMessage }) => {
             .user_login(obj)
             .then(resp => {
                 if (resp.resp) {
-                    debugger
+                    
                     if (resp.resp.user.isAdmin) {
 
                         login(resp.resp.token);
